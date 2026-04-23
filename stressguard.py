@@ -25,7 +25,7 @@ with st.sidebar:
     
     st.markdown("---")
     st.markdown("**Tác giả:** Trần Quốc Thông  \n**Trường:** THCS và THPT Phú Quới")
-    st.caption("Dự án thi HSG Tin học phần mềm sáng tạo 2026")
+    st.caption("Dự án phần mềm theo dõi mức độ stress của học sinh THCS")
 
 # ====================== LƯU DỮ LIỆU ======================
 DATA_FILE = Path("stress_data.json")
@@ -52,7 +52,7 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "📸 Phân tích ảnh mặt", 
     "📊 Thống kê cá nhân", 
     "📋 Báo cáo Lớp (Giáo viên)", 
-    "💬 Chatbot AI 24/7"
+    "💬 Chatbot AI"
 ])
 
 # ==================== TAB 1: Nhật ký cá nhân ====================
