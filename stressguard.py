@@ -108,18 +108,67 @@ Phân tích mức stress {mood}/10, cảm xúc {emotion}, nhật ký: {note}.
 with tab2:
     st.subheader("📸 Upload ảnh khuôn mặt")
     uploaded_file = st.file_uploader("Chọn ảnh selfie", type=["jpg", "jpeg", "png"])
+
     if uploaded_file:
         image = Image.open(uploaded_file)
         st.image(image, use_column_width=True)
+        
         if st.button("🔍 Phân tích cảm xúc bằng AI"):
             if not api_key:
                 st.error("❌ Vui lòng nhập API Key!")
             else:
                 with st.spinner("AI đang phân tích..."):
-                    model = genai.GenerativeModel(model_name)
-                    response = model.generate_content(["Phân tích cảm xúc khuôn mặt của học sinh THCS và THPT, đưa lời khuyên ngắn gọn bằng tiếng Việt.", image])
-                    st.write(response.text)
+                    try:
+                        model = genai.GenerativeModel(model_name)
+                        response = model.generate_content([
+                            "Phân tích cảm xúc khuôn mặt của học sinh THCS và THPT, đưa lời khuyên ngắn gọn bằng tiếng Việt.",
+                            image
+                        ])
+                        analysis_result = response.text.strip()
+                        
+                        st.session_state.image_analysis_result = analysis_result
+                        st.success("✅ Phân tích hoàn tất!")
+                        st.markdown("### 📊 Kết quả phân tích cảm xúc:")
+                        st.write(analysis_result)
+                    except Exception as e:
+                        st.error(f"❌ Lỗi khi phân tích ảnh: {e}")
 
+    # ==================== PHẦN LƯU VÀO NHẬT KÝ (mới thêm) ====================
+    if "image_analysis_result" in st.session_state:
+        st.markdown("---")
+        st.subheader("💾 Lưu phân tích vào Nhật ký cá nhân")
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            mood_from_image = st.select_slider(
+                "Mức độ stress (0-10)", 
+                options=range(0, 11), 
+                value=5,
+                key="mood_image"
+            )
+        with col2:
+            emotion_from_image = st.selectbox(
+                "Cảm xúc chính", 
+                ["😊 Vui vẻ", "😐 Bình thường", "😟 Lo lắng", "😢 Buồn", "😡 Tức giận", "😴 Mệt mỏi", "🤯 Quá tải"],
+                key="emotion_image"
+            )
+        
+        if st.button("💾 Lưu phân tích ảnh vào nhật ký", type="primary", use_container_width=True):
+            entry = {
+                "date": datetime.now(ZoneInfo("Asia/Ho_Chi_Minh")).strftime("%Y-%m-%d %H:%M"),
+                "mood": mood_from_image,
+                "emotion": emotion_from_image,
+                "note": f"📸 Phân tích từ ảnh khuôn mặt:\n\n{st.session_state.image_analysis_result}",
+                "ai_advice": st.session_state.image_analysis_result
+            }
+            st.session_state.data.append(entry)
+            save_data(st.session_state.data)
+            st.success("✅ Đã lưu phân tích ảnh vào nhật ký cá nhân! Bạn có thể xem trong Tab 3 - Thống kê cá nhân.")
+            
+            # Xóa kết quả tạm
+            if "image_analysis_result" in st.session_state:
+                del st.session_state.image_analysis_result
+            st.rerun()
 # ==================== TAB 3: Thống kê cá nhân (có nút xóa) ====================
 with tab3:
     st.subheader("📊 Thống kê cá nhân")
