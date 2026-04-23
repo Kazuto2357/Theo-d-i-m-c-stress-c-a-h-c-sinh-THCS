@@ -8,9 +8,9 @@ import json
 from pathlib import Path
 from PIL import Image
 
-st.set_page_config(page_title="AI StressGuard Student", page_icon="🧠", layout="wide")
-st.title("🧠 AI StressGuard Student")
-st.markdown("**Trợ lý sức khỏe tâm lý dành cho học sinh THCS & THPT**")
+st.set_page_config(page_title="AI Theo Dõi Mức Độ Căng Thẳng", page_icon="🧠", layout="wide")
+st.title("🧠 AI Theo Dõi Mức Độ Căng Thẳng")
+st.markdown("**Người bạn đồng hành sức khoẻ tâm lý đắc lực cho học sinh THCS**")
 
 # ====================== SIDEBAR ======================
 with st.sidebar:
