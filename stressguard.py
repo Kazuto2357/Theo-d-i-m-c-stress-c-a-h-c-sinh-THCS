@@ -13,17 +13,18 @@ st.title("🧠 AI Theo Dõi Mức Độ Căng Thẳng")
 st.markdown("**Người bạn đồng hành sức khoẻ tâm lý đắc lực cho học sinh THCS**")
 
 # ====================== SIDEBAR ======================
+# ====================== SIDEBAR ======================
 with st.sidebar:
     st.header("🔑 Cài đặt")
     
-    # ==================== THÊM LINK TẠI ĐÂY ====================
+    # ==================== NÚT LINK API KEY ====================
     st.link_button(
         label="🌐 Lấy Gemini API Key miễn phí",
         url="https://aistudio.google.com/",
         use_container_width=True
     )
     st.caption("Nhấn nút trên để truy cập **Google AI Studio** và tạo API key ngay (miễn phí)")
-    
+
     api_key = st.text_input("Gemini API Key", type="password", value="")
     model_name = st.selectbox("Chọn mô hình AI", 
                              ["gemini-3.1-flash-lite-preview", "gemini-2.5-flash-lite"], 
