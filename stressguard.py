@@ -8,8 +8,8 @@ import json
 from pathlib import Path
 from PIL import Image
 
-st.set_page_config(page_title="AI Theo Dõi Mức Độ Căng Thẳng", page_icon="🧠", layout="wide")
-st.title("🧠 AI Theo Dõi Mức Độ Căng Thẳng")
+st.set_page_config(page_title="AI Theo Dõi Mức Độ Căng Thẳng của học sinh THCS", page_icon="🧠", layout="wide")
+st.title("🧠 AI Theo Dõi Mức Độ Căng Thẳng của học sinh THCS")
 st.markdown("**Người bạn đồng hành sức khoẻ tâm lý đắc lực cho học sinh THCS**")
 
 # ====================== SIDEBAR ======================
