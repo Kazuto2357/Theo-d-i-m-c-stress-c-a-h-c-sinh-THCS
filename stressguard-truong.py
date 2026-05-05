@@ -58,6 +58,19 @@ if st.session_state.user is None:
 # ====================== SAU KHI ĐĂNG NHẬP THÀNH CÔNG ======================
 st.success(f"👋 Xin chào {st.session_state.user.email}!")
 
+# ====================== KHỞI TẠO SESSION_STATE (RẤT QUAN TRỌNG) ======================
+if "latest_ai_advice" not in st.session_state:
+    st.session_state.latest_ai_advice = None
+
+if "image_analysis_result" not in st.session_state:
+    st.session_state.image_analysis_result = None
+
+if "messages" not in st.session_state:
+    st.session_state.messages = None
+
+if "class_data" not in st.session_state:
+    st.session_state.class_data = load_user_data()
+    
 if st.button("🚪 Đăng xuất", use_container_width=True):
     supabase.auth.sign_out()
     st.session_state.user = None
@@ -227,10 +240,10 @@ Phân tích mức stress {mood}/10, cảm xúc {emotion}, nhật ký: {note}.
                 except Exception as e:
                     st.error(f"❌ Lỗi AI: {e}")
 
-    if st.session_state.latest_ai_advice:
+    # Kiểm tra an toàn trước khi hiển thị
+    if st.session_state.get("latest_ai_advice"):
         st.markdown("### 🤖 Phân tích từ AI:")
         st.write(st.session_state.latest_ai_advice)
-
 # ==================== TAB 2: Phân tích ảnh mặt ====================
 with tabs[1]:
     st.subheader("📸 Upload ảnh khuôn mặt")
