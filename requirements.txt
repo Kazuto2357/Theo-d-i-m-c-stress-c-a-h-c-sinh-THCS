@@ -1,0 +1,7 @@
+streamlit
+supabase
+st-supabase-connection
+google-generativeai
+pandas
+plotly
+pillow
