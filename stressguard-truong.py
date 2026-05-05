@@ -175,8 +175,10 @@ if "selected_role" not in st.session_state or "selected_class" not in st.session
 current_class = st.session_state.selected_class
 current_role = st.session_state.selected_role
 
-if current_class not in st.session_state.data:
-    st.session_state.data[current_class] = []
+# Load dữ liệu của user hiện tại từ Supabase
+if "class_data" not in st.session_state:
+    st.session_state.class_data = load_user_data()
+
 class_data = st.session_state.class_data
 
 st.caption(f"📍 Đang làm việc tại: **{current_class}** — Vai trò: **{current_role}**")
