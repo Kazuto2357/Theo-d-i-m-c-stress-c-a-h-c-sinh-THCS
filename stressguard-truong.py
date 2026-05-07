@@ -131,36 +131,7 @@ if profile is None or st.session_state.get("edit_profile", False):
                 del st.session_state.edit_profile
             st.rerun()
     
-    st.stop()
-
-# ====================== KHỞI TẠO SESSION_STATE ======================
-if "latest_ai_advice" not in st.session_state:
-    st.session_state.latest_ai_advice = None
-if "image_analysis_result" not in st.session_state:
-    st.session_state.image_analysis_result = None
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-# ====================== LƯU DỮ LIỆU NHẬT KÝ ======================
-def load_user_data():
-    try:
-        response = supabase.table("journal_entries").select("*").eq("user_id", user_id).execute()
-        return response.data if response.data else []
-    except:
-        return []
-
-def save_user_data(entry):
-    try:
-        supabase.table("journal_entries").insert(entry).execute()
-        return True
-    except Exception as e:
-        st.error(f"Lỗi lưu Supabase: {e}")
-        return False
-
-if "class_data" not in st.session_state:
-    st.session_state.class_data = load_user_data()
-
-class_data = st.session_state.class_data
+    st.stop()  # Dừng app ở đây khi đang chỉnh sửa
 
 # ====================== SIDEBAR ======================
 with st.sidebar:
