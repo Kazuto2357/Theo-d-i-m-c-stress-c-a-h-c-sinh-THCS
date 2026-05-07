@@ -6,6 +6,7 @@ import pandas as pd
 import plotly.express as px
 import json
 from supabase import create_client, Client
+from PIL import Image
 
 st.set_page_config(page_title="AI Theo Dõi Mức Độ Căng Thẳng", page_icon="🧠", layout="wide")
 
