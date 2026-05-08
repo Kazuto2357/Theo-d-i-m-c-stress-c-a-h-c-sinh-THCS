@@ -179,13 +179,13 @@ with st.sidebar:
         st.session_state.edit_profile = True
         st.rerun()
 
-        # ====================== NÚT LẤY API KEY ======================
-        st.link_button(
-            label="🔑 Bấm để lấy API Key",
-            url="https://aistudio.google.com/app/apikey",
-            use_container_width=True,
-            type="secondary"   # màu nhẹ, không nổi bật quá
-        )
+    # ====================== NÚT LẤY API KEY ======================
+    st.link_button(
+        label="🔑 Bấm để lấy API Key",
+        url="https://aistudio.google.com/app/apikey",
+        use_container_width=True,
+        type="secondary"   # màu nhẹ, không nổi bật quá
+    )
     
     st.markdown("---")
     api_key = st.text_input("Gemini API Key", type="password", value="")
