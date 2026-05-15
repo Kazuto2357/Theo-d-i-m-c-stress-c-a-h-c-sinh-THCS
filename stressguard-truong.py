@@ -8,7 +8,7 @@ import json
 from supabase import create_client, Client
 from PIL import Image
 
-st.set_page_config(page_title="AI Theo Dõi Mức Độ Căng Thẳng", page_icon="🧠", layout="wide")
+st.set_page_config(page_title="Phần Mềm AI Theo Dõi Mức Độ Căng Thẳng Của Học Sinh THCS", page_icon="🧠", layout="wide")
 
 # ====================== KẾT NỐI SUPABASE ======================
 @st.cache_resource
@@ -461,4 +461,4 @@ with tabs[chat_index]:
                 if save_user_data(entry):
                     st.session_state.class_data = load_user_data()
                     st.success("✅ Đã lưu vào nhật ký!")
-st.caption("AI StressGuard • Tác giả: Trần Quốc Thông • Trường THCS & THPT Phú Quới • 2026")
+st.caption("Tác giả: Trần Quốc Thông • Trường THCS & THPT Phú Quới • 2026")
